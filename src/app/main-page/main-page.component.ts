@@ -36,4 +36,8 @@ export class MainPageComponent implements OnInit {
 			this.setListArticles();
 		}
 	}
+
+	deleteArticle(id: number) {
+		this.api.deleteArticle(id);
+	}
 }

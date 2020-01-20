@@ -58,4 +58,11 @@ export class ApiService {
 		const filterArticles = listArticles.filter( item => item.posted === JSON.parse(posted));
 		this.filterArticlesByPosted.next(filterArticles);
 	}
+
+	deleteArticle( id: number ) {
+		let listArticles: Article[] = [];
+		this.articles.subscribe(art => listArticles = art);
+		const articles: Article[] = listArticles.filter( item => item.id !== id);
+		this.storeService.data.next(articles);
+	}
 }
