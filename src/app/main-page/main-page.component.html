@@ -1,0 +1,30 @@
+<div>
+	<table class="table mt-4 col-8 mx-auto table-bordered">
+		<thead>
+		<tr>
+			<th>Id</th>
+			<th>Название</th>
+			<th>Текст</th>
+			<th>Опубликовано</th>
+			<th>Автор</th>
+			<th>Email</th>
+			<th></th>
+		</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let article of listArticles" class="text-center">
+				<td>{{article.id}}</td>
+				<td>{{article.title}}</td>
+				<td>{{article.text}}</td>
+				<td>{{article.posted}}</td>
+				<td>{{article.author}}</td>
+				<td>{{article.email}}</td>
+				<td class="d-flex flex-row justify-content-between">
+					<img src="../../assets/icons/edit.svg">
+					<img src="../../assets/icons/delete.svg">
+					<img src="../../assets/icons/view.svg">
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
