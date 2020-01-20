@@ -6,17 +6,21 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { PostedPipe } from './pipes/posted.pipe';
+import { ArticleSearchComponent } from './main-page/article-search/article-search.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
 	declarations: [
 		AppComponent,
 		MainPageComponent,
 		PostedPipe,
+		ArticleSearchComponent,
 	],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
-		CommonModule
+		CommonModule,
+		FormsModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]

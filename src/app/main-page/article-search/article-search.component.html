@@ -1,0 +1,9 @@
+<div>
+	<label for="search-box" class="pr-4">Поиск по заголовку</label>
+	<input id="search-box" [(ngModel)]="titleForSearch" />
+	<ul class="search-result">
+		<li *ngFor="let article of articles">
+			{{article.title}}
+		</li>
+	</ul>
+</div>

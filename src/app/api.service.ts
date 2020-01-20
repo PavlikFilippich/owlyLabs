@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 import { StoreService } from './store.service';
 import { Article } from '@models/article';
+
 
 @Injectable({
 	providedIn: 'root'
@@ -12,6 +14,10 @@ export class ApiService {
 	) { }
 
 	articles = this.storeService.data.asObservable();
+
+	setArticlesByTitle = new BehaviorSubject<Article[]>([]);
+
+	getArticlesByTitle = this.setArticlesByTitle.asObservable();
 
 	sortedAsk = true;
 
@@ -24,5 +30,21 @@ export class ApiService {
 		}
 		this.sortedAsk = !this.sortedAsk;
 		return sortedTable;
+	}
+
+	searchArticles(term: string) {
+		const searchedTable: Article[] = [];
+		let articles: Article[] = [];
+		if (!term.trim()) {
+			return this.setArticlesByTitle.next([]);
+		}
+		this.articles.subscribe(art => articles = art);
+		articles.map( item => {
+			if ( item.title.indexOf(term) + 1 ) {
+				return searchedTable.push(item);
+			}
+			return;
+		});
+		return this.setArticlesByTitle.next(searchedTable);
 	}
 }
