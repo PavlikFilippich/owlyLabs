@@ -21,6 +21,10 @@ export class ApiService {
 
 	sortedAsk = true;
 
+	filterArticlesByPosted = new BehaviorSubject<Article[]>([]);
+
+	getFilterArticlesByPosted = this.filterArticlesByPosted.asObservable();
+
 	tableSorting(arr: Article[], value: string) {
 		let sortedTable: Article[] = [];
 		if ( this.sortedAsk ) {
@@ -46,5 +50,12 @@ export class ApiService {
 			return;
 		});
 		return this.setArticlesByTitle.next(searchedTable);
+	}
+
+	filterByPosted( posted: string ) {
+		let listArticles: Article[] = [];
+		this.articles.subscribe(art => listArticles = art);
+		const filterArticles = listArticles.filter( item => item.posted === JSON.parse(posted));
+		this.filterArticlesByPosted.next(filterArticles);
 	}
 }

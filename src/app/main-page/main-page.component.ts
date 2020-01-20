@@ -27,4 +27,13 @@ export class MainPageComponent implements OnInit {
 	tableSorting(value: string) {
 		this.api.tableSorting(this.listArticles, value);
 	}
+
+	filterByPosted(posted: string) {
+		if ( posted ) {
+			this.api.filterByPosted(posted);
+			this.api.getFilterArticlesByPosted.subscribe( articles => this.listArticles = articles );
+		} else {
+			this.setListArticles();
+		}
+	}
 }
