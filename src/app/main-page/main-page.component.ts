@@ -23,4 +23,8 @@ export class MainPageComponent implements OnInit {
 	setListArticles() {
 		this.api.articles.subscribe( articles => this.listArticles = articles );
 	}
+
+	tableSorting(value: string) {
+		this.api.tableSorting(this.listArticles, value);
+	}
 }
