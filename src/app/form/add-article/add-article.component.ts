@@ -60,6 +60,10 @@ export class AddArticleComponent {
 			author.clearValidators();
 			email.updateValueAndValidity();
 			author.updateValueAndValidity();
+			this.articleForm.patchValue({
+				author: [''],
+				email: ['']
+			});
 		}
 	}
 

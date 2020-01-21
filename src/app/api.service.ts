@@ -76,7 +76,7 @@ export class ApiService {
 			title: article.title,
 			text: article.text,
 			posted: article.posted,
-			author: article.email,
+			author: article.author,
 			email: article.email
 		};
 		listArticles.push(newArticle);
@@ -90,5 +90,22 @@ export class ApiService {
 		listArticles.forEach( item => listId.push(item.id));
 		const maxNumber = Math.max.apply(null, listId);
 		return maxNumber + 1;
+	}
+
+	editArticle( article: Article, id: number) {
+		let listArticles: Article[] = [];
+		let newArticle: Article;
+		this.articles.subscribe(art => listArticles = art);
+		newArticle = {
+			id,
+			title: article.title,
+			text: article.text,
+			posted: article.posted,
+			author: article.author,
+			email: article.email
+		};
+		const index = listArticles.findIndex( item => item.id === id );
+		listArticles.splice( index, 1, newArticle );
+		this.storeService.data.next(listArticles);
 	}
 }

@@ -34,11 +34,11 @@
 		</div>
 
 		<section class="buttons">
-			<button type="submit" [disabled]="!articleForm.valid" class="btn btn-success btn-lg">Добавить</button>
+			<button type="submit" [disabled]="!articleForm.valid" class="btn btn-success btn-lg">Сохранить</button>
 			<button type="submit" class="btn btn-danger btn-lg" routerLink="/articles">Отмена</button>
 		</section>
 	</form>
 	<div [ngClass]="{smooth: showPopUp}" class="alert alert-success">
-		Статья успешно добавлена
+		Статья успешно сохранена
 	</div>
 </div>
