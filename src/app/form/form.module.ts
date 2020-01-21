@@ -1,14 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { AddArticleComponent } from './add-article/add-article.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 
+import { AddArticleComponent } from './add-article/add-article.component';
+import { EditArticleComponent } from './edit-article/edit-article.component';
+
 @NgModule({
 	declarations: [
-		AddArticleComponent
+		AddArticleComponent,
+		EditArticleComponent
 	],
 	imports: [
 		CommonModule,
@@ -18,7 +20,8 @@ import { RouterModule } from '@angular/router';
 		RouterModule,
 	],
 	exports: [
-		AddArticleComponent
+		AddArticleComponent,
+		EditArticleComponent
 	]
 })
 export class FormModule { }
