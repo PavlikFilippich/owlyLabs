@@ -3,7 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 
 import { StoreService } from './store.service';
 import { Article } from '@models/article';
-
+import { AddArticle } from '@models/addArticle';
 
 @Injectable({
 	providedIn: 'root'
@@ -64,5 +64,31 @@ export class ApiService {
 		this.articles.subscribe(art => listArticles = art);
 		const articles: Article[] = listArticles.filter( item => item.id !== id);
 		this.storeService.data.next(articles);
+	}
+
+	addArticle( article: AddArticle ) {
+		let listArticles: Article[] = [];
+		let newArticle: Article;
+		this.articles.subscribe(art => listArticles = art);
+		const id = this.getId();
+		newArticle = {
+			id,
+			title: article.title,
+			text: article.text,
+			posted: article.posted,
+			author: article.email,
+			email: article.email
+		};
+		listArticles.push(newArticle);
+		this.storeService.data.next(listArticles);
+	}
+
+	getId(): number {
+		let listArticles: Article[] = [];
+		this.articles.subscribe(art => listArticles = art);
+		const listId: number[] = [];
+		listArticles.forEach( item => listId.push(item.id));
+		const maxNumber = Math.max.apply(null, listId);
+		return maxNumber + 1;
 	}
 }
