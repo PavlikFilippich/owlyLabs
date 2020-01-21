@@ -14,8 +14,6 @@ export class DetailPageComponent implements OnInit {
 
 	article: any;
 
-	articles: Article[];
-
 	propertiesArticle: Property[] = [];
 
 	constructor(
@@ -29,9 +27,10 @@ export class DetailPageComponent implements OnInit {
 	}
 
 	getArticle() {
+		let articles: Article[] = [];
 		const id = +this.route.snapshot.paramMap.get('id');
-		this.api.articles.subscribe( articles => this.articles = articles );
-		this.article = this.articles.find( item => item.id === id );
+		this.api.articles.subscribe( arts => articles = arts );
+		this.article = articles.find( item => item.id === id );
 	}
 
 	getPropertiesArticle() {

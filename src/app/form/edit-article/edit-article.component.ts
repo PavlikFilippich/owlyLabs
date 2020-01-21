@@ -54,7 +54,6 @@ export class EditArticleComponent implements OnInit {
 
 	setForm() {
 		this.isPosted = this.article.posted;
-		console.log(this.article.author);
 		if ( this.article.author ) {
 			this.showEmailAndAuthor = true;
 		} else {
