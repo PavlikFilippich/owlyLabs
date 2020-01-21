@@ -9,6 +9,7 @@ import { PostedPipe } from './pipes/posted.pipe';
 import { ArticleSearchComponent } from './main-page/article-search/article-search.component';
 import { FormsModule } from '@angular/forms';
 import { DetailPageComponent } from './detail-page/detail-page.component';
+import { AddArticleComponent } from './add-article/add-article.component';
 
 @NgModule({
 	declarations: [
@@ -17,6 +18,7 @@ import { DetailPageComponent } from './detail-page/detail-page.component';
 		PostedPipe,
 		ArticleSearchComponent,
 		DetailPageComponent,
+		AddArticleComponent,
 	],
 	imports: [
 		BrowserModule,

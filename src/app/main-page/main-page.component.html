@@ -1,14 +1,17 @@
 <div class="col-8 mx-auto mt-4 ">
-	<div class="d-flex flex-row justify-content-between">
-		<app-article-search></app-article-search>
-		<section class="d-flex flex-row align-items-center">
-			<label>Отфильтровать:</label>
-			<select class="custom-select ml-3" #filter (change)="filterByPosted(filter.value)" >
-				<option value="" selected>Показать все</option>
-				<option value="true">Только опубликованные</option>
-				<option value="false">Не опубликованные</option>
-			</select>
+	<div class="d-flex flex-column">
+		<section class="d-flex flex-row justify-content-between mb-3">
+			<button routerLink="/new-article" class="btn btn-primary">Добавить статью</button>
+			<section class="d-flex flex-row align-items-center">
+				<label>Отфильтровать:</label>
+				<select class="custom-select ml-3" #filter (change)="filterByPosted(filter.value)" >
+					<option value="" selected>Показать все</option>
+					<option value="true">Только опубликованные</option>
+					<option value="false">Не опубликованные</option>
+				</select>
+			</section>
 		</section>
+		<app-article-search></app-article-search>
 	</div>
 	<table class="table mt-4 table-bordered">
 		<thead>
