@@ -1,0 +1,8 @@
+<section class="col-8 mx-auto wrapper">
+	<h1>{{article.title}}</h1>
+	<dl *ngFor="let prop of propertiesArticle" class="d-flex flex-row">
+		<dt class="mr-1">{{prop.key}}:</dt>
+		<dd>{{prop.key == "posted" ? (prop.value | posted) : prop.value}}</dd>
+	</dl>
+	<button class="btn btn-success" routerLink="">На гланую</button>
+</section>

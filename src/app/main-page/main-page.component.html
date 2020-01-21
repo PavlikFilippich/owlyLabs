@@ -33,7 +33,7 @@
 				<td class="d-flex flex-row justify-content-between">
 					<img src="../../assets/icons/edit.svg" alt="Редактировать">
 					<img src="../../assets/icons/delete.svg" alt="Удалить" (click)="deleteArticle(article.id)">
-					<img src="../../assets/icons/view.svg" alt="Просмотр">
+					<img src="../../assets/icons/view.svg" alt="Просмотр" routerLink="/article/{{article.id}}">
 				</td>
 			</tr>
 		</tbody>
