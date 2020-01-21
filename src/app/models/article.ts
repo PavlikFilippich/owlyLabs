@@ -5,4 +5,5 @@ export class Article {
 	posted: boolean;
 	author?: string;
 	email?: string;
+	source?: string;
 }

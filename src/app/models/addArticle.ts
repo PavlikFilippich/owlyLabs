@@ -5,4 +5,5 @@ export class AddArticle {
 	setAuthor: boolean;
 	author?: string;
 	email?: string;
+	source?: string;
 }

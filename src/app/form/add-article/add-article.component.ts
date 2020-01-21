@@ -28,8 +28,9 @@ export class AddArticleComponent {
 			text: ['', Validators.required],
 			posted: false,
 			setAuthor: false,
-			author: [''],
-			email: ['']
+			author: '',
+			email: '',
+			source: ''
 		});
 	}
 
@@ -61,8 +62,8 @@ export class AddArticleComponent {
 			email.updateValueAndValidity();
 			author.updateValueAndValidity();
 			this.articleForm.patchValue({
-				author: [''],
-				email: ['']
+				author: '',
+				email: ''
 			});
 		}
 	}

@@ -34,8 +34,9 @@ export class EditArticleComponent implements OnInit {
 			text: ['', Validators.required],
 			posted: false,
 			setAuthor: false,
-			author: [''],
-			email: ['']
+			author: '',
+			email: '',
+			source: ''
 		});
 	}
 
@@ -52,17 +53,21 @@ export class EditArticleComponent implements OnInit {
 	}
 
 	setForm() {
-		let isSetAuthor: boolean;
-		isSetAuthor = !this.article.author;
 		this.isPosted = this.article.posted;
-		this.showEmailAndAuthor = !isSetAuthor;
+		console.log(this.article.author);
+		if ( this.article.author ) {
+			this.showEmailAndAuthor = true;
+		} else {
+			this.showEmailAndAuthor = false;
+		}
 		this.articleForm.setValue({
 			title: this.article.title,
 			text: this.article.text,
 			posted: this.article.posted,
-			setAuthor: isSetAuthor,
-			author: this.article.author,
-			email: this.article.email
+			setAuthor: this.showEmailAndAuthor,
+			author: this.article.author || '',
+			email: this.article.email || '',
+			source: this.article.source || ''
 		});
 	}
 
@@ -94,8 +99,8 @@ export class EditArticleComponent implements OnInit {
 			email.updateValueAndValidity();
 			author.updateValueAndValidity();
 			this.articleForm.patchValue({
-				author: [''],
-				email: ['']
+				author: '',
+				email: ''
 			});
 		}
 	}

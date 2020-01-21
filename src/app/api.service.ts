@@ -77,7 +77,8 @@ export class ApiService {
 			text: article.text,
 			posted: article.posted,
 			author: article.author,
-			email: article.email
+			email: article.email,
+			source: article.source
 		};
 		listArticles.push(newArticle);
 		this.storeService.data.next(listArticles);
@@ -102,7 +103,8 @@ export class ApiService {
 			text: article.text,
 			posted: article.posted,
 			author: article.author,
-			email: article.email
+			email: article.email,
+			source: article.source
 		};
 		const index = listArticles.findIndex( item => item.id === id );
 		listArticles.splice( index, 1, newArticle );
