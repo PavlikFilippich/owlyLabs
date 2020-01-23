@@ -16,7 +16,7 @@ export class ApiService {
 
 	sortedAsk = true;
 
-	tableSorting(arr: Article[], value: string) {
+	tableSorting(arr: Article[], value: string): Article[] {
 		let sortedTable: Article[] = [];
 		if ( this.sortedAsk ) {
 			sortedTable = arr.sort((a, b) => a[value] > b[value] ? 1 : -1);
