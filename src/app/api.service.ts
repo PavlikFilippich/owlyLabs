@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 
 import { StoreService } from './store.service';
 import { Article } from '@models/article';
@@ -15,15 +14,7 @@ export class ApiService {
 
 	articles = this.storeService.data.asObservable();
 
-	setArticlesByTitle = new BehaviorSubject<Article[]>([]);
-
-	getArticlesByTitle = this.setArticlesByTitle.asObservable();
-
 	sortedAsk = true;
-
-	filterArticlesByPosted = new BehaviorSubject<Article[]>([]);
-
-	getFilterArticlesByPosted = this.filterArticlesByPosted.asObservable();
 
 	tableSorting(arr: Article[], value: string) {
 		let sortedTable: Article[] = [];
@@ -36,40 +27,35 @@ export class ApiService {
 		return sortedTable;
 	}
 
-	searchArticles(term: string) {
+	searchArticles(term: string): Article[] {
 		const searchedTable: Article[] = [];
-		let articles: Article[] = [];
+		const articles: Article[] = this.storeService.data.getValue();
 		if (!term.trim()) {
-			return this.setArticlesByTitle.next([]);
+			return [];
 		}
-		this.articles.subscribe(art => articles = art);
 		articles.map( item => {
 			if ( item.title.indexOf(term) + 1 ) {
 				return searchedTable.push(item);
 			}
 			return;
 		});
-		return this.setArticlesByTitle.next(searchedTable);
+		return searchedTable;
 	}
 
-	filterByPosted( posted: string ) {
-		let listArticles: Article[] = [];
-		this.articles.subscribe(art => listArticles = art);
-		const filterArticles = listArticles.filter( item => item.posted === JSON.parse(posted));
-		this.filterArticlesByPosted.next(filterArticles);
+	filterByPosted( posted: string ): Article[] {
+		const listArticles: Article[] = this.storeService.data.getValue();
+		return listArticles.filter(item => item.posted === JSON.parse(posted));
 	}
 
 	deleteArticle( id: number ) {
-		let listArticles: Article[] = [];
-		this.articles.subscribe(art => listArticles = art);
+		const listArticles: Article[] = this.storeService.data.getValue();
 		const articles: Article[] = listArticles.filter( item => item.id !== id);
 		this.storeService.data.next(articles);
 	}
 
 	addArticle( article: AddArticle ) {
-		let listArticles: Article[] = [];
+		const listArticles: Article[] = this.storeService.data.getValue();
 		let newArticle: Article;
-		this.articles.subscribe(art => listArticles = art);
 		const id = this.getId();
 		newArticle = {
 			id,
@@ -85,8 +71,7 @@ export class ApiService {
 	}
 
 	getId(): number {
-		let listArticles: Article[] = [];
-		this.articles.subscribe(art => listArticles = art);
+		const listArticles: Article[] = this.storeService.data.getValue();
 		const listId: number[] = [];
 		listArticles.forEach( item => listId.push(item.id));
 		const maxNumber = Math.max.apply(null, listId);
@@ -94,9 +79,8 @@ export class ApiService {
 	}
 
 	editArticle( article: Article, id: number) {
-		let listArticles: Article[] = [];
+		const listArticles: Article[] = this.storeService.data.getValue();
 		let newArticle: Article;
-		this.articles.subscribe(art => listArticles = art);
 		newArticle = {
 			id,
 			title: article.title,

@@ -30,8 +30,7 @@ export class MainPageComponent implements OnInit {
 
 	filterByPosted(posted: string) {
 		if ( posted ) {
-			this.api.filterByPosted(posted);
-			this.api.getFilterArticlesByPosted.subscribe( articles => this.listArticles = articles );
+			this.listArticles = this.api.filterByPosted(posted);
 		} else {
 			this.setListArticles();
 		}

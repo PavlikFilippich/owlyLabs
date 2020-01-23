@@ -1,4 +1,4 @@
-import { Component, DoCheck, OnInit } from '@angular/core';
+import { Component, DoCheck } from '@angular/core';
 
 import { Article } from '@models/article';
 import { ApiService } from '../../api.service';
@@ -8,23 +8,19 @@ import { ApiService } from '../../api.service';
 	templateUrl: './article-search.component.html',
 	styleUrls: ['./article-search.component.scss']
 })
-export class ArticleSearchComponent implements OnInit, DoCheck {
-	articles: Article[];
+export class ArticleSearchComponent implements DoCheck {
+	articles: Article[] = [];
 	titleForSearch = '';
 
 	constructor(
 		private api: ApiService
 	) {}
 
-	ngOnInit() {
-		this.api.getArticlesByTitle.subscribe( article => this.articles = article);
-	}
-
 	ngDoCheck() {
 		this.search();
 	}
 
 	search(): void {
-		this.api.searchArticles(this.titleForSearch);
+		this.articles = this.api.searchArticles(this.titleForSearch);
 	}
 }
